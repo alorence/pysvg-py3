@@ -3,7 +3,7 @@
 For licensing information please refer to license.txt
 '''
 import math
-from shape import Polyline
+from .shape import Polyline
 
 class Vector(object):
     """

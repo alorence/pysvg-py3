@@ -4,7 +4,7 @@
 (C) 2008, 2009 Kerim Mansour
 For licensing information please refer to license.txt
 '''
-from attributes import CoreAttrib, ConditionalAttrib, StyleAttrib, GraphicalEventsAttrib, PaintAttrib, OpacityAttrib, GraphicsAttrib, CursorAttrib, FilterAttrib, MaskAttrib, ClipAttrib
+from .attributes import CoreAttrib, ConditionalAttrib, StyleAttrib, GraphicalEventsAttrib, PaintAttrib, OpacityAttrib, GraphicsAttrib, CursorAttrib, FilterAttrib, MaskAttrib, ClipAttrib
 import codecs
 
 class BaseElement:
@@ -83,7 +83,7 @@ class BaseElement:
         @return:  the representation of the current element as an xml string
         """
         xml='<'+self._elementName+' '
-        for key,value in self._attributes.items():
+        for key,value in list(self._attributes.items()):
             if value != None:
                 xml+=key+'="'+self.quote_attrib(str(value))+'" '
         if  len(self._subElements)==0: #self._textContent==None and
@@ -93,7 +93,7 @@ class BaseElement:
             #if self._textContent==None:
             for subelement in self._subElements:
                 s = subelement.getXML()
-                if type(s) != unicode:
+                if type(s) != str:
                     s = str(s)
                 xml+=s
                # xml+=str(subelement.getXML())
@@ -122,7 +122,7 @@ class BaseElement:
         Might throw an Exception if attribute was not found.
         #TODO: check if we should fix this using "setAttribute"
         """
-        for key in kwargs.keys():
+        for key in list(kwargs.keys()):
             #try:
             f = getattr(self,'set_' + key)
             f(kwargs[key])
@@ -155,7 +155,7 @@ class BaseElement:
         """
         Transforms characters between xml notation and python notation.
         """
-        s1 = (isinstance(inStr, basestring) and inStr or
+        s1 = (isinstance(inStr, str) and inStr or
               '%s' % inStr)
         s1 = s1.replace('&', '&amp;')
         s1 = s1.replace('<', '&lt;')

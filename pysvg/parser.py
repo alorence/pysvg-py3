@@ -25,11 +25,11 @@ def calculateMethodName(attr):
     return name
     
 def setAttributes(attrs,obj):
-    for attr in attrs.keys():
+    for attr in list(attrs.keys()):
         if hasattr(obj, calculateMethodName(attr)):
             eval ('obj.'+calculateMethodName(attr))(attrs[attr].value)
         else:
-            print calculateMethodName(attr)+' not found in:'+obj._elementName
+            print(calculateMethodName(attr)+' not found in:'+obj._elementName)
         
 def build(node_, object):
     attrs = node_.attributes
@@ -42,7 +42,7 @@ def build(node_, object):
                 capitalLetter = string.upper(nodeName_[0])
                 objectinstance=eval(capitalLetter+nodeName_[1:]) ()                
             except:
-                print 'no class for: '+nodeName_
+                print('no class for: '+nodeName_)
                 continue
             object.addElement(build(child_,objectinstance))
         elif child_.nodeType == Node.TEXT_NODE:
@@ -52,14 +52,14 @@ def build(node_, object):
             #else:
 #            print "TextNode is:"+child_.nodeValue
             #object.setTextContent(child_.nodeValue)
-            if child_.nodeValue <> None:
+            if child_.nodeValue != None:
                 object.appendTextContent(child_.nodeValue)
         elif child_.nodeType == Node.CDATA_SECTION_NODE:  
             object.appendTextContent('<![CDATA['+child_.nodeValue+']]>')          
         elif child_.nodeType == Node.COMMENT_NODE:  
             object.appendTextContent('<!-- '+child_.nodeValue+' -->')          
         else:
-            print "Some node:"+nodeName_+" value: "+child_.nodeValue
+            print("Some node:"+nodeName_+" value: "+child_.nodeValue)
     return object
 
 #TODO: packageprefix ?

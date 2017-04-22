@@ -290,8 +290,8 @@ class StyleBuilder:
   
     def getStyle(self):
         string = ''#style="'
-        for key, value in self.style_dict.items():
-            if value <> None and value <> '':
+        for key, value in list(self.style_dict.items()):
+            if value != None and value != '':
                 string += str(key) + ':' + str(value) + '; '
         return string
 
@@ -352,8 +352,8 @@ class TransformBuilder:
     
     def getTransform(self):
         string = ''#style="'
-        for key, value in self.transform_dict.items():
-            if value <> None and value <> '':
+        for key, value in list(self.transform_dict.items()):
+            if value != None and value != '':
                 #string+=str(key)+':'+str(value)+'; '
                 string += str(value) + ' '
         return string
