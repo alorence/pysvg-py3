@@ -14,7 +14,7 @@ def read(*names, **kwargs):
     ) as fp:
         return fp.read()
 
-CURRENT_VERSION = '0.2.2'
+CURRENT_VERSION = '0.2.3'
 
 setup(
     name='pysvg-py3',
