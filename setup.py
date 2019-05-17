@@ -1,17 +1,5 @@
 #!/usr/bin/env python
-from codecs import open
-from os import path
-
 from setuptools import setup, find_packages
-
-
-def read(*names, **kwargs):
-    with open(
-            path.join(path.dirname(__file__), *names),
-            encoding=kwargs.get("encoding", "utf8")
-    ) as fp:
-        return fp.read()
-
 
 CURRENT_VERSION = '0.2.2-post3'
 
@@ -19,7 +7,7 @@ setup(
     name='pysvg-py3',
     version=CURRENT_VERSION,
     description='Python 3 portage of pysvg',
-    long_description=read('README.md'),
+    long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
     author='Kerim Mansour',
     author_email='',
