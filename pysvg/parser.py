@@ -39,7 +39,7 @@ def build(node_, object):
         nodeName_ = child_.nodeName.split(':')[-1]
         if child_.nodeType == Node.ELEMENT_NODE:
             try:
-                capitalLetter = string.upper(nodeName_[0])
+                capitalLetter = nodeName_[0].upper()
                 objectinstance=eval(capitalLetter+nodeName_[1:]) ()                
             except:
                 print('no class for: '+nodeName_)
@@ -52,7 +52,8 @@ def build(node_, object):
             #else:
 #            print "TextNode is:"+child_.nodeValue
             #object.setTextContent(child_.nodeValue)
-            if child_.nodeValue != None:
+            if child_.nodeValue != None and child_.nodeValue.strip() != '':
+                # print(len(child_.nodeValue))
                 object.appendTextContent(child_.nodeValue)
         elif child_.nodeType == Node.CDATA_SECTION_NODE:  
             object.appendTextContent('<![CDATA['+child_.nodeValue+']]>')          
