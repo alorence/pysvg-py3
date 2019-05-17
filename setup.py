@@ -20,6 +20,7 @@ setup(
     version=CURRENT_VERSION,
     description='Python 3 portage of pysvg',
     long_description=read('README.md'),
+    long_description_content_type="text/markdown",
     author='Kerim Mansour',
     author_email='',
     url='https://github.com/alorence/pysvg-py3',
