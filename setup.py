@@ -1,20 +1,19 @@
 #!/usr/bin/env python
-import re
 from codecs import open
 from os import path
 
-# Always prefer setuptools over distutils
 from setuptools import setup, find_packages
 
 
 def read(*names, **kwargs):
     with open(
-        path.join(path.dirname(__file__), *names),
-        encoding=kwargs.get("encoding", "utf8")
+            path.join(path.dirname(__file__), *names),
+            encoding=kwargs.get("encoding", "utf8")
     ) as fp:
         return fp.read()
 
-CURRENT_VERSION = '0.2.2-post2'
+
+CURRENT_VERSION = '0.2.2-post3'
 
 setup(
     name='pysvg-py3',
